@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+
+# Translation files (user-uploaded / generated PDFs)
+translations/input/*
+translations/output/*
+!translations/input/.gitkeep
+!translations/output/.gitkeep
+
+# Test / coverage artefacts
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Type checker
+.mypy_cache/
+
+# Environment secrets — never commit
+.env
+*.env
+
+# OS
+.DS_Store
+Thumbs.db

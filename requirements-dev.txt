@@ -1,0 +1,15 @@
+# Testing
+pytest==8.3.5
+pytest-cov==6.0.0
+
+# Formatting
+black==25.1.0
+
+# Linting + import sorting
+ruff==0.9.10
+
+# Type checking
+mypy==1.14.1
+
+# Pre-commit hooks runner
+pre-commit==4.1.0
