@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard — Healthcare Translation QA{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+  <h1>Translated Documents</h1>
+
+  {% if documents %}
+  <table class="doc-table">
+    <thead>
+      <tr>
+        <th>Document</th>
+        <th>Translated At</th>
+        <th>Feedback Notes</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for doc in documents %}
+      <tr>
+        <td class="doc-name">{{ doc.doc_name }}</td>
+        <td class="doc-date">{{ doc.translated_at }}</td>
+        <td class="doc-feedback">
+          {% if doc.feedback_count > 0 %}
+            <span class="badge badge-notes">{{ doc.feedback_count }} note{{ 's' if doc.feedback_count != 1 }}</span>
+          {% else %}
+            <span class="badge badge-none">None</span>
+          {% endif %}
+        </td>
+        <td class="doc-status">
+          <span class="badge badge-{{ doc.status }}">{{ doc.status | capitalize }}</span>
+        </td>
+        <td>
+          <a href="/review/{{ doc.doc_name }}" class="btn btn-review">Review</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="empty-state">
+    <p>No translated documents yet.</p>
+    <p>Drop a PDF into <code>translations/input/</code> and run <code>python3 translator.py</code> to get started.</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

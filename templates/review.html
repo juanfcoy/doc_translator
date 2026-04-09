@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Review — {{ doc_name }}{% endblock %}
+
+{% block head %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="review-header">
+  <a href="/" class="btn btn-back">&larr; Dashboard</a>
+  <h2 class="review-title">{{ doc_name }}</h2>
+</div>
+
+<div class="review-layout">
+  <!-- Left: Original English PDF -->
+  <div class="pdf-pane" id="pane-original">
+    <div class="pane-label">Original (English)</div>
+    <div class="pdf-container" id="pdf-original"></div>
+  </div>
+
+  <!-- Right: Translated Spanish PDF -->
+  <div class="pdf-pane" id="pane-translated">
+    <div class="pane-label">Translated (Spanish)</div>
+    <div class="pdf-container" id="pdf-translated"></div>
+  </div>
+
+  <!-- Sidebar: Feedback Notes -->
+  <div class="sidebar" id="feedback-sidebar">
+    <div class="sidebar-header">Feedback Notes</div>
+    <ul class="feedback-list" id="feedback-list">
+      {% for item in feedback %}
+      <li class="feedback-item">
+        <div class="feedback-section">&ldquo;{{ item.section | truncate(80) }}&rdquo;</div>
+        <div class="feedback-note">{{ item.note }}</div>
+        <div class="feedback-time">{{ item.created_at }}</div>
+      </li>
+      {% else %}
+      <li class="feedback-empty" id="feedback-empty">No notes yet. Select text to add one.</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<!-- Floating annotation popup -->
+<div id="annotation-popup" class="annotation-popup hidden">
+  <div class="popup-header">Add Feedback Note</div>
+  <div class="popup-field">
+    <label>Selected text</label>
+    <div id="popup-selection" class="popup-selection"></div>
+  </div>
+  <div class="popup-field">
+    <label for="popup-note">Your note</label>
+    <textarea id="popup-note" rows="4" placeholder="Describe the issue…"></textarea>
+  </div>
+  <div class="popup-actions">
+    <button id="popup-submit" class="btn btn-submit">Submit</button>
+    <button id="popup-cancel" class="btn btn-cancel">Cancel</button>
+  </div>
+</div>
+<div id="popup-overlay" class="popup-overlay hidden"></div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const DOC_NAME = {{ doc_name | tojson }};
+  const PDF_ORIGINAL_URL = "/pdf/input/" + encodeURIComponent(DOC_NAME);
+  const PDF_TRANSLATED_URL = "/pdf/output/" + encodeURIComponent(DOC_NAME);
+</script>
+<script src="{{ url_for('static', filename='js/review.js') }}"></script>
+{% endblock %}

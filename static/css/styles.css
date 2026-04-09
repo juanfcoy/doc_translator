@@ -1,0 +1,387 @@
+/* ============================================================
+   Healthcare Translation QA — Styles
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  color: #1a1a2e;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+
+.site-header {
+  background: #1a3a5c;
+  padding: 0 24px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+}
+
+.site-title {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+main {
+  padding: 24px;
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+
+.btn {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.btn:hover { opacity: 0.85; }
+
+.btn-review {
+  background: #1a3a5c;
+  color: #fff;
+}
+
+.btn-back {
+  background: #e8ecf0;
+  color: #1a1a2e;
+}
+
+.btn-submit {
+  background: #217a3c;
+  color: #fff;
+}
+
+.btn-cancel {
+  background: #e8ecf0;
+  color: #1a1a2e;
+}
+
+/* ── Badges ─────────────────────────────────────────────── */
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge-pending   { background: #fef3c7; color: #92400e; }
+.badge-reviewed  { background: #d1fae5; color: #065f46; }
+.badge-notes     { background: #dbeafe; color: #1e40af; }
+.badge-none      { background: #f3f4f6; color: #6b7280; }
+
+/* ── Dashboard ───────────────────────────────────────────── */
+
+.dashboard {
+  max-width: 960px;
+}
+
+.dashboard h1 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #1a3a5c;
+}
+
+.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.doc-table th {
+  background: #1a3a5c;
+  color: #fff;
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.doc-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+.doc-table tr:last-child td { border-bottom: none; }
+
+.doc-table tr:hover td { background: #f8fafc; }
+
+.doc-name { font-weight: 500; }
+
+.doc-date { color: #6b7280; font-size: 12px; }
+
+.empty-state {
+  background: #fff;
+  border-radius: 6px;
+  padding: 40px;
+  text-align: center;
+  color: #6b7280;
+  line-height: 1.8;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.empty-state code {
+  background: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+/* ── Review Layout ───────────────────────────────────────── */
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.review-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a3a5c;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.review-layout {
+  display: flex;
+  gap: 12px;
+  height: calc(100vh - 130px);
+}
+
+/* ── PDF Panes ───────────────────────────────────────────── */
+
+.pdf-pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  overflow: hidden;
+  min-width: 0;
+}
+
+.pane-label {
+  background: #1a3a5c;
+  color: #fff;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.pdf-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  background: #525659;
+}
+
+/* PDF.js canvas pages */
+.pdf-page-wrapper {
+  margin-bottom: 12px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.pdf-page-wrapper canvas {
+  display: block;
+}
+
+/* PDF.js text layer */
+.textLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  line-height: 1;
+  pointer-events: auto;
+}
+
+.textLayer span {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+}
+
+.textLayer ::selection {
+  background: rgba(0, 120, 215, 0.3);
+}
+
+/* ── Feedback Sidebar ────────────────────────────────────── */
+
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.sidebar-header {
+  background: #1a3a5c;
+  color: #fff;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.feedback-list {
+  list-style: none;
+  overflow-y: auto;
+  flex: 1;
+  padding: 8px;
+}
+
+.feedback-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  background: #fafafa;
+}
+
+.feedback-section {
+  font-size: 11px;
+  color: #6b7280;
+  font-style: italic;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+.feedback-note {
+  font-size: 13px;
+  color: #1a1a2e;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+.feedback-time {
+  font-size: 10px;
+  color: #9ca3af;
+}
+
+.feedback-empty {
+  color: #9ca3af;
+  font-size: 12px;
+  padding: 16px 8px;
+  text-align: center;
+}
+
+/* ── Annotation Popup ────────────────────────────────────── */
+
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 100;
+}
+
+.annotation-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  padding: 20px;
+  width: 380px;
+  z-index: 101;
+}
+
+.popup-header {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a3a5c;
+  margin-bottom: 14px;
+}
+
+.popup-field {
+  margin-bottom: 12px;
+}
+
+.popup-field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.popup-selection {
+  background: #f3f4f6;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 12px;
+  color: #374151;
+  font-style: italic;
+  max-height: 72px;
+  overflow-y: auto;
+  word-break: break-word;
+}
+
+.popup-field textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.popup-field textarea:focus {
+  outline: none;
+  border-color: #1a3a5c;
+}
+
+.popup-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+.hidden { display: none !important; }
